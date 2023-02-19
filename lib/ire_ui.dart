@@ -16,7 +16,7 @@ export 'src/responsive_design/responsive.dart' show ResponsiveBuilder;
 export 'src/services/dialog_service.dart' show DialogService;
 export 'src/services/toast_service.dart' show ToastService;
 
-export 'src/widgets/jd_extent_grid_view.dart' show CellInformation;
+export 'src/widgets/jd_extent_grid_view.dart' show JdExtentGridView;
 export 'src/widgets/jd_icon_button.dart' show JdIconButton;
 export 'src/widgets/jd_inkwell.dart' show JdInkWell;
 export 'src/widgets/jd_network_image.dart' show JdNetworkImage;
