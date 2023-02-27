@@ -12,6 +12,13 @@ class ValidatorPatterns {
 }
 
 class Validators {
+  static String? required(String? value) {
+    if (value != null && value.isNotEmpty) {
+      return null;
+    }
+    return 'Valor requerido';
+  }
+
   static String? spanishFirstName(String? value) {
     if (value != null && ValidatorPatterns.spanishName.hasMatch(value)) {
       return null;
