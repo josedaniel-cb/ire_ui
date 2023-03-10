@@ -1,52 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-// Widget _defaultOnLoading(
-//   ImageChunkEvent loadingProgress,
-// ) {
-//   return Center(
-//     child: CircularProgressIndicator(
-//       value: loadingProgress.expectedTotalBytes != null
-//           ? loadingProgress.cumulativeBytesLoaded /
-//               loadingProgress.expectedTotalBytes!
-//           : null,
-//     ),
-//   );
-// }
-
-// Widget _defaultOnReady(
-//   Widget child,
-// ) {
-//   return child;
-// }
-
 class JdNetworkImage extends StatelessWidget {
   final String url;
-  // final Widget? loadingChild;
-  final Widget errorChild;
-  // final Widget Function(ImageChunkEvent loadingProgress) onLoading;
-  // final Widget Function(Widget child) onReady;
-  // final double? aspectRatio;
-
+  final Widget? errorChild;
   const JdNetworkImage({
     super.key,
     required this.url,
-    // this.onLoading = _defaultOnLoading,
-    // this.onReady = _defaultOnReady,
-    // this.aspectRatio,
-    required this.errorChild,
-    // this.loadingChild,
+    this.errorChild,
   });
 
   @override
   Widget build(BuildContext context) {
-    // if (aspectRatio == null) {
-    //   return _buildImage();
-    // }
-    // return AspectRatio(
-    //   aspectRatio: aspectRatio!,
-    //   child: _buildImage(),
-    // );
     return CachedNetworkImage(
       fit: BoxFit.cover,
       imageUrl: url,
@@ -55,7 +20,19 @@ class JdNetworkImage extends StatelessWidget {
           child: CircularProgressIndicator(value: download.progress),
         );
       },
-      errorWidget: (context, url, error) => errorChild,
+      errorWidget: (context, url, error) {
+        // print(error);
+        return errorChild ??
+            Container(
+              alignment: Alignment.center,
+              color: Colors.black12,
+              padding: const EdgeInsets.all(10),
+              child: const Text(
+                'Something went wrong',
+                textAlign: TextAlign.center,
+              ),
+            );
+      },
     );
   }
 
@@ -87,5 +64,4 @@ class JdNetworkImage extends StatelessWidget {
   //     },
   //   );
   // }
-
 }
